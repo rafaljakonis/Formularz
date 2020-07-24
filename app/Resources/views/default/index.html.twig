@@ -22,8 +22,10 @@
     {{ form_widget(formularz.file, { 'attr': {'class': 'wyborPlikuPrzycisk','accept':'.pdf, .doc, .rtf, .xls, .ods, .odt','multiple':'true','limt':10}}) }}
     <br>
     <input type="submit" value="Wyślij" id="przyciskWyslij">
+    {{form_errors(formularz.content, { 'attr': {'class': 'error'}}) }}
 
 {{ form_end(formularz) }}
+
 </div>
 
 {% endblock %}
@@ -36,9 +38,10 @@
     #wyborPliku{ border-radius:5px; background-color:hsla(0, 100%, 90%, 0.3);font-size: 13px;
     text-align:left; padding: 2%;margin-top: 1%;;}
     #formularzNapis {letter-spacing: 5px;text-align: center;}
-    #formularz { height:50%;}
+    #formularz { height:100%;}
     #form { text-align:center; height:100%;}  
     .formSymfony{height:70%;} 
+    .error{background-color:rgba(255, 0, 0, 0.4);    padding: 1%; border-radius: 5px;}
     .wyborPlikuPrzycisk{margin-top:2%;margin-bottom:2%;}
     .tytul {padding: 0; width:100%;border-radius:5px;border:1px solid black;height: 8%;font-size: 17px;}
     .tresc { padding: 0;width:100%; height:40%; resize: none; border-radius:5px;height:30% ;border:1px solid black;font-size: 17px;}

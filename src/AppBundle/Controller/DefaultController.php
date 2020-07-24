@@ -29,7 +29,7 @@ class DefaultController extends Controller
         $post = new Post;
         $form = $this->createForm(Formularz::class, $post);
         $form->handleRequest($request);
-        if($form->isSubmitted())
+        if($form->isSubmitted() && $form->isValid())
         {
             $plik = $form->get('file')->getData();
             if($plik)
@@ -48,13 +48,13 @@ class DefaultController extends Controller
             $eM->persist($post);
             $eM->flush();
             
-            
+            return $this->redirectToRoute('form');
             
             
         }
         return $this->render('default/index.html.twig', ['formularz' => $form->createView()]);
     }
-        /**
+    /**
      * @Route("/panel_administacyjny", name="panel")
      */
     public function controlAction()
@@ -85,7 +85,7 @@ class DefaultController extends Controller
         $eM -> remove($produkt);
         $eM -> flush();
         $produkty =$eM ->getRepository('AppBundle\Entity\Post')->findAll();
-        return $this->render('default/control.html.twig',['wyniki'=>$produkty]);
+        return $this->redirectToRoute('panel');
     }
 
 

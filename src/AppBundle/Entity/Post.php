@@ -24,28 +24,28 @@ class Post
 
     /**
      * @var string
-     *
+     * 
      * @ORM\Column(name="title", type="text")
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotNull
      * @ORM\Column(name="content", type="text")
      */
     private $content;
 
     /**
      * @var string
-     * 
+     * @Assert\File (maxSize="1k",maxSizeMessage="Plik jest za duży")
      * @ORM\Column(name="file", type="string", length=255,nullable=true)
      */
     private $file;
 
     /**
      * @var int
-     *
+
      * @ORM\Column(name="vision", type="integer")
      */
     private $vision;
