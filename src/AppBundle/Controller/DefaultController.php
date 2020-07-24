@@ -28,7 +28,9 @@ class DefaultController extends Controller
     {
         $post = new Post;
         $form = $this->createForm(Formularz::class, $post);
+       
         $form->handleRequest($request);
+           dump($request);;die;
         if($form->isSubmitted() && $form->isValid())
         {
             $plik = $form->get('file')->getData();
@@ -44,6 +46,7 @@ class DefaultController extends Controller
             $post ->setFile($unikatowa);
             $post ->setVision(0);
             $post = $form->getData();
+         
             $eM = $this->getDoctrine()->getManager();
             $eM->persist($post);
             $eM->flush();
