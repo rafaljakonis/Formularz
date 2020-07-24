@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block title %}Formularz zgłoszeniowy{% endblock %}
+
+{% block body %}
+<div id="formularz">
+<h1 id="formularzNapis">Formularz zgłoszeniowy</h1>
+{{ form_start(formularz, { 'attr': {'class': 'formSymfony'}} ) }}
+
+    {{ form_label(formularz.title) }}
+    <br>
+    {{ form_widget(formularz.title,{ 'attr': {'class': 'tytul'}}) }}
+    <br>
+
+    {{ form_label(formularz.content) }}
+    <br>
+    {{ form_widget(formularz.content) }}
+    <br>
+    <div id="wyborPliku">
+    <p>Limit wielkości pojedynczego pliku wynosi 1MB.</p>
+     <p>Dopuszczalne formaty plików to pdf, doc, rtf, xls, ods, odt.</p>
+    </div>
+    {{ form_widget(formularz.file, { 'attr': {'class': 'wyborPlikuPrzycisk','accept':'.pdf, .doc, .rtf, .xls, .ods, .odt','multiple':'true','limt':10}}) }}
+    <br>
+    <input type="submit" value="Wyślij" id="przyciskWyslij">
+
+{{ form_end(formularz) }}
+</div>
+
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    html {height:100%;}
+    body { background: #F5F5F5; font: 18px/1.5 sans-serif; height:100%;margin-left:15%;margin-right:15%} 
+    h2 { font-size: 15px;text-align: left; margin-left: 10%;}
+    #wyborPliku{ border-radius:5px; background-color:hsla(0, 100%, 90%, 0.3);font-size: 13px;
+    text-align:left; padding: 2%;margin-top: 1%;;}
+    #formularzNapis {letter-spacing: 5px;text-align: center;}
+    #formularz { height:50%;}
+    #form { text-align:center; height:100%;}  
+    .formSymfony{height:70%;} 
+    .wyborPlikuPrzycisk{margin-top:2%;margin-bottom:2%;}
+    .tytul {padding: 0; width:100%;border-radius:5px;border:1px solid black;height: 8%;font-size: 17px;}
+    .tresc { padding: 0;width:100%; height:40%; resize: none; border-radius:5px;height:30% ;border:1px solid black;font-size: 17px;}
+    #przyciskWyslij {  background-color: #4CAF50;border: none; color: white; 
+    padding: 16px 32px;text-decoration: none; margin: 4px 2px;cursor: pointer; }
+
+    @media (min-width: 768px) {
+        body { background: #55555; font: 18px/1.5 sans-serif; }
+        #wrapper { width: 80%; margin: 2em auto; }
+        #icon-book { display: inline-block; }
+        #status a, #next a { display: block; }
+
+        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
+    }
+</style>
+{% endblock %}

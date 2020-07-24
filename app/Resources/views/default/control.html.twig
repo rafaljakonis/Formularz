@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+{% block title %}Panel Administratora{% endblock %}
+
+{% block body %}
+<div id = "container">
+<div class = "napis">
+<h1 class="formularzNapis">Panel Administratora</h1>
+<hr>
+</div>
+<div id ="tabelaDiv">
+    <table class="tabela">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Temat</th>
+                <th>Treść</th>
+                <th>Pliki</th>
+                <th>Usuń</th>
+                <th>Podgląd</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+         {% for wynik in wyniki %}
+            <tr>
+                <td>{{ wynik.id }}</td>
+                <td>{{ wynik.title }}</td>
+                {% if(wynik.content|length  > 8) %}
+                <td>{{ wynik.content[0:8] }}...</td>
+                {% else %} 
+                <td>{{ wynik.content }}</td>
+                {% endif %}
+
+                {% if (wynik.file ==" ") %}
+                <td>
+                Brak
+                </td>    
+                {% else %}          
+                <td>{{ wynik.file }}</td>
+                {% endif %}
+                <td><a href="{{ path('panelDel',{'id':wynik.id})}}" class= "klik" >Klik</a></td>
+                <td><a  class = "wyswietlanie"href="{{ path('panelShowNote',{'id':wynik.id})}}">Wyświetl</a></td>
+                <td>{% if(wynik.vision==1) %}
+                Widziane
+                {% else %}
+                {% endif %}
+                </td>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+    <h2><a href=" {{ path('homepage') }}" class="back">Powrót</a></h2>
+</div>
+
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+body{background: #F5F5F5;}
+.back{    text-decoration: none; color: #b14949;}
+tr:hover{background-color:hsla(11, 15%, 90%,0.3);}
+td{    padding: 2%;}
+.napis{text-align:center}
+.wyswietlanie{text-decoration: none;color:#05055e;}
+hr {width:60%}
+.klik{color:red;text-decoration: none;}
+.tabela{width: 60%; text-align: center;border-bottom: 1PX SOLID BLACK;border-collapse: collapse;}
+#tabelaDiv{text-align: -webkit-center;width: 100%;}
+.formularzNapis{letter-spacing: 5px;text-align: center;}}
+</style>
+{% endblock %}

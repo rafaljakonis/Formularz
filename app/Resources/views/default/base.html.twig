@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}Strona główna{% endblock %}
+
+{% block body %}
+<div id="container">
+<div id="zadania">
+<h2 class = "napisZadania">Zadanie 1</h2>
+<a href = {{ path('form') }}><button class="zadaniePrzycisk">Formularz</button></a>
+<a href = {{ path('panel') }}><button class="zadaniePrzycisk">Panel Administratora</button></a>
+<hr>
+</div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+body{background: #F5F5F5;}
+#zadania{text-align:center;}
+.napisZadania{float: left;}
+.zadaniePrzycisk{border:none;font-size:30px;padding:1%;}
+</style>
+{% endblock %}
