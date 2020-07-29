@@ -14,7 +14,6 @@
                 <th>ID</th>
                 <th>Temat</th>
                 <th>Treść</th>
-                <th>Pliki</th>
                 <th>Usuń</th>
                 <th>Podgląd</th>
 
@@ -24,21 +23,13 @@
         <tbody>
          {% for wynik in wyniki %}
             <tr>
+
                 <td>{{ wynik.id }}</td>
                 <td>{{ wynik.title }}</td>
                 {% if(wynik.content|length  > 8) %}
                 <td>{{ wynik.content[0:8] }}...</td>
                 {% else %} 
                 <td>{{ wynik.content }}</td>
-                {% endif %}
-
-
-                {% if (wynik.file ==" ") %}
-                <td>
-                Brak
-                </td>    
-                {% else %}          
-                <td>{{ wynik.file }}</td>
                 {% endif %}
                 <td><a href="{{ path('panelDel',{'id':wynik.id})}}" class= "klik" >Klik</a></td>
                 <td><a  class = "wyswietlanie"href="{{ path('panelShowNote',{'id':wynik.id})}}">Wyświetl</a></td>

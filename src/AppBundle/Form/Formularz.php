@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints\File;
+use AppBundle\Entity\Post;
+
 class Formularz extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -22,10 +24,10 @@ class Formularz extends AbstractType
                     'Zmiana godziny przyjazdu odjazdu' => "Godzina",
             ]])
             ->add('content',TextareaType::class,array('attr' =>array('class'=>'tresc')))
-            ->add('file', FileType::class,['required' => false,'constraints'=> [new File(['maxSize'=>'1M','maxSizeMessage'=>'plik jest za duży'])]]);
-            
+            ->add('file', FileType::class,['required'=>false,'mapped'=>false,'multiple'=>true,'attr' => ['maxlength' => 4]]);
     }
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setDefaults(['data_class' => Post::class, ]);
     }
 }

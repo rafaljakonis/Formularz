@@ -5,12 +5,16 @@
 <div id = "container">
 <h2>Tytuł : {{ zgloszenia.title }}</h2>
 <h2>Treść : {{ zgloszenia.content }}</h2>
-<h2> Pliki : {% if (zgloszenia.file ==" ") %}
+<h2> Pliki : {% if (zgloszenia.plik1 ==" ") %}
                 <td>
                 Brak
                 </td>    
                 {% else %}          
-                <td>{{ zgloszenia.file }}</td>
+                <td> <ul>
+                <li>{{ zgloszenia.plik1 }}</li>
+                <li>{{ zgloszenia.plik2 }}</li>
+                <li>{{ zgloszenia.plik3 }}</li>
+                </ul></td>
                 {% endif %}
 </h2>
 <h2><a href=" {{ path('panel') }}" class="back">Powrót</a></h2>
