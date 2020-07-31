@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 
-class DefaultController extends Controller
+class FormController extends Controller
 {
     /**
      * @Route("/", name="homepage")
@@ -35,11 +35,13 @@ class DefaultController extends Controller
         {  
   
             $plikiForm = $request->files->get('formularz')['file'];
+            $dopuszczalneFormaty = ['pdf','doc','rtf','xls','ods','odt','jpg','png','jpeg'];
             if(count($plikiForm)>=4)
             {
                 $this->addFlash('error', 'Dodałeś za dużo plików ( limit to 3 )');
                 return $this->redirectToRoute('form');
             }
+           
             if(empty($plikiForm))
             {
                 $unikatowa = [" "," "," "];
@@ -50,10 +52,23 @@ class DefaultController extends Controller
                 $unikatowa = [" "," "," "];
                  foreach($plikiForm as $plikiFormularz)
                 {
+                    if( ($plikiFormularz->getSize()) >1000000)
+                    {
+                        $this->addFlash('error', 'Dodany plik jest za duży (limit to 1 MB)');
+                        return $this->redirectToRoute('form');
+                    }
+                    $exte = pathinfo($plikiFormularz->getClientOriginalName());
+                    if(in_array($exte['extension'],$dopuszczalneFormaty))
+                    {
                     $unikatowa[$i]= uniqid().'.'.$plikiFormularz->guessExtension();
                     $plikiFormularz->move($this->getParameter('pliki'),$unikatowa[$i]);
                     $i++;
-                    
+                    }
+                    else
+                    {
+                        $this->addFlash('error', 'Wybrałeś niewłaściwe rozszczerznie pliku');
+                        return $this->redirectToRoute('form'); 
+                    }                 
                 } 
             }
             
@@ -88,6 +103,7 @@ class DefaultController extends Controller
      */
     public function controlShowNoteAction($id)
     {     
+
         
         $eM = $this->getDoctrine()->getManager();
         $produkt= $eM->getRepository('AppBundle\Entity\Post')->find($id);
@@ -99,13 +115,20 @@ class DefaultController extends Controller
      * @Route("/panel_administacyjny/usuwanie/{id}", name="panelDel")
      */
     public function controlDelNoteAction($id)
-    {
+    {      
+        try
+        {  
         $eM = $this->getDoctrine()->getManager();
         $produkt = $eM ->getRepository('AppBundle\Entity\Post')->find($id);   
         $eM -> remove($produkt);
         $eM -> flush();
         $produkty =$eM ->getRepository('AppBundle\Entity\Post')->findAll();
         return $this->redirectToRoute('panel');
+        }
+        catch (\Exception $error)
+        {
+            return $this->redirectToRoute('panel'); 
+        }
     }
 
 

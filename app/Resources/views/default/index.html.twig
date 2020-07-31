@@ -31,9 +31,9 @@
     <br>
     <div id="wyborPliku">
     <p>Limit wielkości pojedynczego pliku wynosi 1MB.</p>
-     <p>Dopuszczalne formaty plików to pdf, doc, rtf, xls, ods, odt.</p>
+     <p>Dopuszczalne formaty plików to pdf, doc, rtf, xls, ods, odt, jpg, jpeg, png.</p>
     </div>
-    {{ form_widget(formularz.file, { 'attr': {'class': 'wyborPlikuPrzycisk','accept':'.pdf, .doc, .rtf, .xls, .ods, .odt'}}) }}
+    {{ form_widget(formularz.file, { 'attr': {'class': 'wyborPlikuPrzycisk','accept':'.pdf, .doc, .rtf, .xls, .ods, .odt, .jpg , .png, .jpeg'}}) }}
     <br>
     <input type="submit" value="Wyślij" id="przyciskWyslij">
      <h3><a href=" {{ path('homepage') }}" class="back">Powrót</a></h3>

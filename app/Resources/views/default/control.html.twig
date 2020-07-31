@@ -16,11 +16,12 @@
                 <th>Treść</th>
                 <th>Usuń</th>
                 <th>Podgląd</th>
-
+                
             </tr>
         </thead>
 
         <tbody>
+        {% set i = 0 %}
          {% for wynik in wyniki %}
             <tr>
 
@@ -32,6 +33,7 @@
                 <td>{{ wynik.content }}</td>
                 {% endif %}
                 <td><a href="{{ path('panelDel',{'id':wynik.id})}}" class= "klik" >Klik</a></td>
+                {% set i = i+1 %}
                 <td><a  class = "wyswietlanie"href="{{ path('panelShowNote',{'id':wynik.id})}}">Wyświetl</a></td>
                 <td>{% if(wynik.vision==1) %}
                 Widziane
