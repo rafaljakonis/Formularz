@@ -2,10 +2,10 @@ function onButton()
 {
     if(document.querySelector("#formularz_content").textLength == 0)
     {
-        document.querySelector("#przyciskWyslij").style.cursor="not-allowed"
+        document.querySelector("#submitButton").style.cursor="not-allowed"
     }
 }
 function outButton()
 {
-    document.querySelector("#przyciskWyslij").style.cursor=""
+    document.querySelector("#submitButton").style.cursor=""
 }
