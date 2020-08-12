@@ -23,7 +23,7 @@ class Formularz extends AbstractType
                     'Zmiana godziny odjazdu autobusu' => "Godzina odjazdu",
                     'Zmiana godziny przyjazdu odjazdu' => "Godzina",
             ]])
-            ->add('content',TextareaType::class,array('attr' =>array('class'=>'tresc')))
+            ->add('content',TextareaType::class,array('attr' =>array('class'=>'content')))
             ->add('file', FileType::class,['required'=>false,'mapped'=>false,'multiple'=>true,'attr' => ['maxlength' => 4]]);
     }
     public function configureOptions(OptionsResolver $resolver)

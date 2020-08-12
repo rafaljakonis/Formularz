@@ -2,9 +2,9 @@
 {% block title %}Formularz zgłoszeniowy{% endblock %}
 
 {% block body %}
-<div id="formularz">
+<div id="formDiv">
 
-<h1 id="formularzNapis">Formularz zgłoszeniowy</h1>
+<h1 id="formLabel">Formularz zgłoszeniowy</h1>
 <div id="formMessage">
  {% for message in app.flashes('success') %}
  <div id="succes">
@@ -22,25 +22,28 @@
 
     <strong>Tytył</strong>
     <br>
-    {{ form_widget(formularz.title,{ 'attr': {'class': 'tytul'}}) }}
+    {{ form_widget(formularz.title,{ 'attr': {'class': 'title'}}) }}
     <br>
 
     <strong>Treść</strong>
     <br>
     {{ form_widget(formularz.content) }}
     <br>
-    <div id="wyborPliku">
+    <div id="chooseFilesDiv">
     <p>Limit wielkości pojedynczego pliku wynosi 1MB.</p>
      <p>Dopuszczalne formaty plików to pdf, doc, rtf, xls, ods, odt, jpg, jpeg, png.</p>
     </div>
-    {{ form_widget(formularz.file, { 'attr': {'class': 'wyborPlikuPrzycisk','accept':'.pdf, .doc, .rtf, .xls, .ods, .odt, .jpg , .png, .jpeg'}}) }}
+    {{ form_widget(formularz.file, { 'attr': {'class': 'chooseFilesButton','accept':'.pdf, .doc, .rtf, .xls, .ods, .odt, .jpg , .png, .jpeg'}}) }}
     <br>
-    <input type="submit" value="Wyślij" id="przyciskWyslij">
-     <h3><a href=" {{ path('homepage') }}" class="back">Powrót</a></h3>
+    <input type="submit" value="Wyślij" id="submitButton"  onmousemove="onButton()" onmouseout="outButton()">
+     <h3><a href=" {{ path('homepage') }}" class="back">Powrót </a></h3>
 {{ form_end(formularz) }}
 
 </div>
 {% endblock %}
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ asset('css/form.css') }}"/>
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/cursor.js') }}"></script>
 {% endblock %}

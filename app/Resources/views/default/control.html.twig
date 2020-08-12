@@ -3,12 +3,12 @@
 
 {% block body %}
 <div id = "container">
-<div class = "napis">
-<h1 class="formularzNapis">Panel Administratora</h1>
+<div class = "label">
+<h1 class="controlLabel">Panel Administratora</h1>
 <hr>
 </div>
-<div id ="tabelaDiv">
-    <table class="tabela">
+<div id ="tableDiv">
+    <table class="table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -32,9 +32,9 @@
                 {% else %} 
                 <td>{{ wynik.content }}</td>
                 {% endif %}
-                <td><a href="{{ path('panelDel',{'id':wynik.id})}}" class= "klik" >Klik</a></td>
+                <td><a href="{{ path('panelDel',{'id':wynik.id})}}" class= "click" >Klik</a></td>
                 {% set i = i+1 %}
-                <td><a  class = "wyswietlanie"href="{{ path('panelShowNote',{'id':wynik.id})}}">Wyświetl</a></td>
+                <td><a  class = "showed"href="{{ path('panelShowNote',{'id':wynik.id})}}">Wyświetl</a></td>
                 <td>{% if(wynik.vision==1) %}
                 Widziane
                 {% else %}
