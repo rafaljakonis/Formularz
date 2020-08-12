@@ -1,0 +1,6 @@
+body{background: #F5F5F5;}
+
+#zadania{text-align:center;}
+
+.napisZadania{float: left;}
+.zadaniePrzycisk{border:none;font-size:30px;padding:1%;}

@@ -20,7 +20,7 @@ class FormController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('default/base.html.twig', [
+        return $this->render('default/main.html.twig', [
         ]);
     }
     /**

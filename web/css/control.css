@@ -1,0 +1,14 @@
+body{background: #F5F5F5;}
+tr:hover{background-color:hsla(11, 15%, 90%,0.3);}
+td{    padding: 2%;}
+hr {width:60%}
+
+#tabelaDiv{text-align: -webkit-center;width: 100%;}
+
+.back{    text-decoration: none; color: #b14949;}
+.napis{text-align:center}
+.wyswietlanie{text-decoration: none;color:#05055e;}
+.klik{color:red;text-decoration: none;}
+.tabela{width: 60%; text-align: center;border-bottom: 1PX SOLID BLACK;border-collapse: collapse;}
+.formularzNapis{letter-spacing: 5px;text-align: center;}
+
